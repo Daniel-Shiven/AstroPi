@@ -47,20 +47,20 @@
 # Second establishes the animals benefits with 0 or 1 (10 benefits)
 # Third establishes temperature, humidity, and weight
 
-animal_identity = [ ["golden", [1,1,1,1,1,1,0,0,0,0],[20,55,27.5]],
-["pug", [0,1,0,1,0,0,0,0,0,0],[21,55,7.25]],
-["labradoodle", [1,1,0,1,0,0,1,0,0,0],[21,55,22.5]],
-["greyhound", [0,0,0,1,1,1,1,0,0,0],[19.5,55,27.5]],
-["labradore", [1,1,1,1,1,1,1,0,0,0],[19.5,55,27.5]],
-["poodle", [1,0,1,1,1,1,1,1,0,0],[19.5,55,22.5]],
-["collie", [1, 1, 0, 1, 1, 1, 1, 1, 0, 0],[19.5,55,17]],
-["terrier", [0, 1, 0, 1, 1, 1, 1, 1, 0, 0],[19.5,55,7]],
-["sphynx", [0,1,1,0,0,0,0,0,1,1],[25,55,4]],
-["persian", [0, 1, 1, 0, 0, 0, 0, 0, 1, 1],[19.5,55,4]],
-["rabbit", [1, 1, 0, 1, 0, 1, 1, 0, 0, 0],[18,55,3.9]],
-["hamster", [1, 1, 0, 1, 0, 0, 1, 0, 0, 0],[21,45,.095]],
-["easternBox", [1, 1, 0, 1, 0, 0, 1, 0, 0, 0],[25,60,4]],
-["greekTortoise", [1, 1, 0, 1, 0, 0, 1, 0, 0, 0],[26.5,60,10.5]]]
+animal_identity = [ ["golden", [1,1,1,1,1,1,0,0],[20,55,27.5]],
+["pug",         [0, 1, 0, 1, 0, 0, 0, 0],[21,55,7.25]],
+["labradoodle", [1, 1, 0, 1, 0, 0, 1, 0],[21,55,22.5]],
+["greyhound",   [0, 0, 0, 1, 1, 1, 1, 0],[19.5,55,27.5]],
+["labradore",   [1, 1, 1, 1, 1, 1, 1, 0],[19.5,55,27.5]],
+["poodle",      [1, 0, 1, 1, 1, 1, 1, 1],[19.5,55,22.5]],
+["collie",      [1, 1, 0, 1, 1, 1, 1, 1],[19.5,55,17]],
+["terrier",     [0, 1, 0, 1, 1, 1, 1, 1],[19.5,55,7]],
+["sphynx",      [0, 1, 1, 0, 0, 0, 0, 0],[25,55,5.5]],
+["persian",     [0, 1, 1, 0, 0, 0, 0, 0],[19.5,55,4]],
+["rabbit",      [1, 1, 0, 1, 0, 1, 1, 0],[18,55,3.9]],
+["hamster",     [1, 1, 0, 1, 0, 1, 0, 0],[21,45,.095]],
+["easternBox",  [1, 1, 0, 1, 0, 0, 0, 0],[25,60,4]],
+["greek",       [1, 1, 0, 1, 0, 0, 1, 0],[26.5,60,10.5]]]
 
 
 # This is the function that will produce our ideal combination of animals to send to the ISS,
@@ -100,7 +100,7 @@ def W_Rizz_Match(temp, humidity, animal_identity):
                              # for example i = 3 (110) and j=1 (10), the 2nd bits are both 1 so it evaluates to true
                 combination.append(eligible_animals[j]) #then add it to the list
 
-        total = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] #Each 0 represents a pro
+        total = [0, 0, 0, 0, 0, 0, 0, 0] #Each 0 represents a pro
 
         #Merging the lists - if animal's pros are not in total then add them
         for i in range(len(combination)):
@@ -108,7 +108,7 @@ def W_Rizz_Match(temp, humidity, animal_identity):
                 if combination[i][1][j] == 1 and total[j] == 0: #For each index
                     total[j] = 1
 
-        print(sum(total), ">=", currentBest)
+        print("Current Sum is", sum(total), "versus current best of", currentBest)
         isBest = False
         if sum(total) > currentBest:
             isBest = True
@@ -132,6 +132,7 @@ def W_Rizz_Match(temp, humidity, animal_identity):
                 topchoice = []
                 topchoice.append(weight)
                 topchoice.append(final_list)
+
 
     return topchoice
 
