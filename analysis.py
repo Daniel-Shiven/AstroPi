@@ -124,11 +124,7 @@ def W_Rizz_Match(temp, humidity, animal_identity):
             print(f"Another list is: {final_list}\nIt's weight is: {weight}")
 
             print(isBest)
-            if weight < topchoice[0]:
-                topchoice = []
-                topchoice.append(weight)
-                topchoice.append(final_list)
-            if isBest:
+            if weight < topchoice[0] or isBest:
                 topchoice = []
                 topchoice.append(weight)
                 topchoice.append(final_list)
