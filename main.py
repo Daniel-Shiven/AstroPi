@@ -116,18 +116,20 @@ def W_Rizz_Match(temp, humidity, animal_identity):
    
     # Loop through each animal and check if it's temperature and humidity are within the desired range
     for i in range(len(animal_identity)):
-        if abs(temp - animal_identity[i][2][0]) <= 5 and abs(humidity - animal_identity[i][2][1]) <= 12:
+        if abs(temp - animal_identity[i][2][0]) <= 6 and abs(humidity - animal_identity[i][2][1]) <= 10 * humidity:
             eligible_animals.append(animal_identity[i])
    
     #Print a list of the eligible animals for bug fixing purposes (Remove in final draft)
-    #print("The eligible animals are:",)
-    #for i in range(len(eligible_animals)):
-       #print(eligible_animals[i][0])
+    print("The eligible animals are:",)
+    for i in range(len(eligible_animals)):
+        print(eligible_animals[i][0])
 
 
     #This variable will store the weight and animals in the best list. Weight is set to 1k as the program
     #below needs a predefined weight for topchoice when it is first chosen
     topchoice = (1000,[])
+    currentBest = 1
+    isBest = False
 
     # Loop through each combination of eligible animals with a power set: all the possible subsets in a set
     # 2^ of the set length will yield the # of all possible sets.
@@ -143,25 +145,35 @@ def W_Rizz_Match(temp, humidity, animal_identity):
                              # for example i = 3 (110) and j=1 (10), the 2nd bits are both 1 so it evaluates to true
                 combination.append(eligible_animals[j]) #then add it to the list
 
-        total = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] #Each 0 represents a pro
+        total = [0, 0, 0, 0, 0, 0, 0, 0] #Each 0 represents a pro
 
         #Merging the lists - if animal's pros are not in total then add them
         for i in range(len(combination)):
             for j in range(len(total)):
                 if combination[i][1][j] == 1 and total[j] == 0: #For each index
                     total[j] = 1
-        
-        if sum(total) == 10:
+
+        print("Current Sum is", sum(total), "versus current best of", currentBest)
+        isBest = False
+        if sum(total) > currentBest:
+            isBest = True
+
+        if sum(total) >= currentBest:
+            currentBest = sum(total)
             weight = 0
             final_list = []
             for i in range(len(combination)):
                 weight += combination[i][2][2]
                 final_list.append(combination[i][0])
 
-            if weight < topchoice[0]:
+            print(f"Another list is: {final_list}\nIt's weight is: {weight}")
+
+            print(isBest)
+            if weight < topchoice[0] or isBest:
                 topchoice = []
                 topchoice.append(weight)
                 topchoice.append(final_list)
+
 
     return topchoice
 
