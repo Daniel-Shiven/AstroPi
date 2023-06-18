@@ -9,8 +9,4 @@ analysis.py contains the code to run the analysis on Earth
 animals.txt contains the list of animals (irrelevant to the code)
 
 
-Made by:
--Daniel S
--Guillermo B
--Lucia C
--Lourdes R
+Made by: Daniel S, Guillermo C, Lucia C, Lourdes R
